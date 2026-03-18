@@ -1,0 +1,284 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    background: #5c94fc;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#gameContainer {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    background: #5c94fc;
+}
+
+canvas {
+    display: block;
+    background: linear-gradient(to bottom, #5c94fc 0%, #87ceeb 70%, #98d8c8 100%);
+    border: 4px solid #000;
+    image-rendering: pixelated;
+}
+
+/* Modals */
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.95);
+    padding: 40px;
+    border-radius: 15px;
+    border: 4px solid #ffd700;
+    text-align: center;
+    z-index: 100;
+}
+
+.modal h2 {
+    color: #ffd700;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-shadow: 3px 3px #000;
+}
+
+/* Character Selection */
+.character-option {
+    display: inline-block;
+    margin: 0 20px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.character-option:hover {
+    transform: scale(1.1);
+}
+
+.character-box {
+    width: 150px;
+    height: 180px;
+    background: #fff;
+    border: 4px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.character-box p {
+    font-size: 14px;
+    color: #000;
+    margin-top: 10px;
+}
+
+/* HUD */
+#hud {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #ffffff;
+    font-size: 14px;
+    text-shadow: 2px 2px 4px #000000;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #ffd700;
+}
+
+.hud-item {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+}
+
+.heart {
+    color: #ff0000;
+    margin: 0 2px;
+    font-size: 18px;
+}
+
+/* Quiz */
+#quizOverlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 150;
+}
+
+#quiz {
+    min-width: 500px;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    z-index: 200 !important;
+}
+
+#quiz h3 {
+    color: #ffd700;
+    font-size: 14px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.quiz-option {
+    background: #fff;
+    border: 3px solid #000;
+    padding: 12px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 11px;
+    border-radius: 8px;
+    color: #000;
+}
+
+.quiz-option:hover {
+    background: #ffd700;
+    transform: translateX(5px);
+}
+
+#explanation {
+    background: rgba(255, 215, 0, 0.2);
+    border: 2px solid #ffd700;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    display: none;
+}
+
+#explanation.correct {
+    background: rgba(0, 255, 0, 0.2);
+    border-color: #00ff00;
+}
+
+#explanation.wrong {
+    background: rgba(255, 0, 0, 0.2);
+    border-color: #ff0000;
+}
+
+#explanation h4 {
+    color: #ffd700;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+#explanation.correct h4 {
+    color: #00ff00;
+}
+
+#explanation.wrong h4 {
+    color: #ff0000;
+}
+
+#explanation p {
+    color: #fff;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+button {
+    background: #ffd700;
+    border: 3px solid #000;
+    padding: 12px 24px;
+    font-size: 12px;
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.2s;
+    border-radius: 8px;
+}
+
+button:hover {
+    background: #ffed4e;
+    transform: scale(1.05);
+}
+
+/* Game Over */
+#gameOver {
+    border-color: #ff0000;
+}
+
+#gameOver h2 {
+    color: #ff0000;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+#gameOver p {
+    color: #fff;
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+/* Level Complete */
+#levelComplete {
+    border-color: #00ff00;
+}
+
+#levelComplete h2 {
+    color: #00ff00;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Level Announcement */
+#levelAnnounce {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.95);
+    padding: 60px 80px;
+    border-radius: 20px;
+    border: 6px solid #ffd700;
+    text-align: center;
+    z-index: 150;
+    display: none;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+#levelAnnounce h1 {
+    color: #ffd700;
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 4px 4px #000;
+}
+
+#levelAnnounce p {
+    color: #fff;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    20% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    80% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+}

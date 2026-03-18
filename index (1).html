@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Mario Educational Quiz - General Knowledge</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        
+        <!-- Character Selection -->
+        <div id="characterSelect" class="modal">
+            <h2>SELECT YOUR CHARACTER</h2>
+            <div class="character-option" onclick="selectCharacter('mario')">
+                <div class="character-box">
+                    <div style="font-size: 60px;">🧑</div>
+                    <p>MARIO</p>
+                </div>
+            </div>
+            <div class="character-option" onclick="selectCharacter('barbie')">
+                <div class="character-box">
+                    <div style="font-size: 60px;">👸</div>
+                    <p>BARBIE</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- HUD -->
+        <div id="hud">
+            <div class="hud-item"><span>LIVES: </span><span id="livesDisplay"></span></div>
+            <div class="hud-item">COINS: <span id="coins">0</span></div>
+            <div class="hud-item">SCORE: <span id="score">0</span></div>
+            <div class="hud-item">LEVEL: <span id="level">1</span></div>
+        </div>
+
+        <!-- Quiz Modal -->
+        <div id="quizOverlay"></div>
+        <div id="quiz" class="modal" style="display: none;">
+            <h3 id="quizQuestion"></h3>
+            <div id="quizOptions"></div>
+            <div id="explanation">
+                <h4 id="explanationTitle"></h4>
+                <p id="explanationText"></p>
+                <button onclick="closeQuiz()">CONTINUE</button>
+            </div>
+        </div>
+
+        <!-- Game Over -->
+        <div id="gameOver" class="modal" style="display: none;">
+            <h2>GAME OVER!</h2>
+            <p>Final Score: <span id="finalScore">0</span></p>
+            <p>Coins: <span id="finalCoins">0</span></p>
+            <button onclick="restartGame()">PLAY AGAIN</button>
+        </div>
+
+        <!-- Level Complete -->
+        <div id="levelComplete" class="modal" style="display: none;">
+            <h2>LEVEL COMPLETE!</h2>
+            <p id="levelMessage">Great Job!</p>
+            <p id="levelStats"></p>
+            <button onclick="nextLevel()">NEXT LEVEL</button>
+        </div>
+        
+        <!-- Level Announcement -->
+        <div id="levelAnnounce">
+            <h1 id="announceTitle">LEVEL 1</h1>
+            <p id="announceSubtitle">Tutorial Stage</p>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
